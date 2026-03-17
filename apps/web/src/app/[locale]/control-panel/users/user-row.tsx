@@ -55,7 +55,7 @@ export function UserRow({
         })}
       >
         <div>
-          <OptimizedAvatarImage src={image} name={name} size="md" />
+          <OptimizedAvatarImage src={image} name={name} size="lg" />
         </div>
         <div className="min-w-0 flex-1">
           <div className="font-semibold">{name}</div>

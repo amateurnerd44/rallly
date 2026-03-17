@@ -107,7 +107,7 @@ export function MembersSettingsPageClient() {
                   {invites.map((invite) => (
                     <StackedListItem key={invite.id}>
                       <div className="flex flex-1 items-center gap-4">
-                        <OptimizedAvatarImage name={invite.email} size="md" />
+                        <OptimizedAvatarImage name={invite.email} size="xl" />
                         <div>
                           <div className="flex items-center gap-x-2">
                             <div className="font-semibold text-sm">

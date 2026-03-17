@@ -64,7 +64,7 @@ export const ParticipantRowView: React.FunctionComponent<{
         <div className="flex max-w-full items-center justify-between gap-x-1">
           <Participant>
             <OptimizedAvatarImage
-              size="sm"
+              size="md"
               name={name}
               email={email}
               src={image ?? undefined}

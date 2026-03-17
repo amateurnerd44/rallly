@@ -52,7 +52,7 @@ export function NavUser() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button className="flex h-auto w-full gap-2 p-2" variant="ghost">
-            <OptimizedAvatarImage size="md" src={user.image} name={user.name} />
+            <OptimizedAvatarImage size="lg" src={user.image} name={user.name} />
             <div className="flex-1 truncate text-left">
               <div className="font-medium">{user.name}</div>
               <div className="mt-0.5 truncate font-normal text-muted-foreground text-xs">

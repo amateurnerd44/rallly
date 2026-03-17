@@ -51,7 +51,11 @@ export function SpaceDropdown() {
             })}
             variant="ghost"
           >
-            <SpaceIcon src={activeSpace.image} name={activeSpace.name} />
+            <SpaceIcon
+              src={activeSpace.image}
+              name={activeSpace.name}
+              size="lg"
+            />
             <div className="min-w-0 flex-1 px-0.5 text-left">
               <div className="truncate font-medium text-sm">
                 {activeSpace.name}

@@ -94,12 +94,12 @@ const MobilePoll: React.FunctionComponent = () => {
               <SelectContent>
                 <SelectItem value="all">
                   <div className="flex items-center gap-x-2.5">
-                    <div className="flex w-5 justify-center">
+                    <div>
                       <Icon>
                         <UsersIcon />
                       </Icon>
                     </div>
-                    <span className="font-medium">
+                    <span>
                       {t("allParticipants", {
                         defaultValue: "All Participants",
                       })}

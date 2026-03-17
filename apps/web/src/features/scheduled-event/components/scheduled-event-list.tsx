@@ -147,7 +147,7 @@ export function ScheduledEventListItem({
           <Tooltip>
             <TooltipTrigger>
               <OptimizedAvatarImage
-                size="sm"
+                size="md"
                 name={createdBy.name}
                 src={createdBy.image}
               />
