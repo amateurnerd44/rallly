@@ -85,7 +85,7 @@ export function AccountSidebarMenu() {
               href={item.href}
               className="flex items-center gap-x-2"
             >
-              <Icon>{item.icon}</Icon>
+              {item.icon}
               {item.label}
             </HoverPrefetchLink>
           </SidebarMenuButton>

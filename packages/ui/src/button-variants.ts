@@ -4,18 +4,19 @@ import { cn } from "./lib/utils";
 
 export const buttonVariants = cva(
   cn(
-    "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg font-normal outline-none transition-opacity focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:opacity-90 active:shadow-none disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:opacity-90",
+    "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg font-normal outline-none transition-opacity transition-transform focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:translate-y-0.5 active:shadow-none disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:opacity-90",
   ),
   {
     variants: {
       variant: {
         primary:
-          "bg-primary text-primary-foreground ring-1 ring-black/10 ring-inset hover:bg-primary/90 dark:ring-white/10",
+          "bg-primary text-primary-foreground ring-1 ring-button-outline ring-inset hover:bg-primary/90",
         destructive:
-          "bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/90",
-        default: "border border-input bg-transparent shadow-xs hover:bg-accent",
+          "bg-destructive text-destructive-foreground ring-1 ring-button-outline ring-inset hover:bg-destructive/90",
+        default:
+          "bg-transparent ring-1 ring-button-outline ring-inset hover:bg-accent",
         ghost:
-          "border-transparent bg-transparent text-foreground hover:bg-accent data-[state=open]:bg-accent",
+          "border-transparent bg-transparent text-foreground ring-1 ring-transparent ring-inset hover:bg-accent hover:ring-button-outline data-[state=open]:bg-accent data-[state=open]:ring-button-outline",
         actionBar:
           "border-transparent bg-action-bar text-action-bar-foreground hover:bg-action-bar-foreground/10 data-[state=open]:bg-action-bar-foreground/20",
         link: "border-transparent text-primary underline-offset-4 hover:underline",

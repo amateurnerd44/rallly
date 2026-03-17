@@ -515,9 +515,9 @@ const sidebarMenuButtonVariants = cva(
     variants: {
       variant: {
         primary:
-          "text-primary active:text-primary data-[active=false]:hover:bg-primary/10",
+          "text-primary ring-1 ring-transparent ring-inset active:text-primary data-[active=false]:hover:bg-primary/10 data-[active=false]:hover:ring-primary/20",
         default:
-          "text-muted-foreground hover:text-sidebar-accent-foreground hover:text-sidebar-accent-foreground focus:bg-sidebar-accent focus:text-sidebar-accent-foreground focus-visible:text-sidebar-accent-foreground data-[active=true]:ring-1 data-[active=true]:ring-1 data-[active=true]:ring-black/5 data-[active=true]:ring-inset",
+          "text-muted-foreground hover:text-sidebar-accent-foreground hover:text-sidebar-accent-foreground focus:bg-sidebar-accent focus:text-sidebar-accent-foreground focus-visible:text-sidebar-accent-foreground data-[active=true]:ring-1 data-[active=true]:ring-1 data-[active=true]:ring-button-outline data-[active=true]:ring-inset",
         outline:
           "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
       },

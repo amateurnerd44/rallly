@@ -41,7 +41,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      "flex cursor-default select-none items-center gap-2 rounded-xs px-2 py-1.5 text-sm outline-hidden focus:bg-accent data-[state=open]:bg-accent data-disabled:opacity-50",
+      dropdownMenuItemVariants({ variant: "default" }),
       inset && "pl-8",
       className,
     )}
@@ -88,13 +88,13 @@ const DropdownMenuContent = React.forwardRef<
 ));
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
 
-const dropdownMenuItemVariants = cva(
-  "relative flex cursor-default select-none items-center gap-x-2.5 rounded-lg px-2 py-1.5 text-sm outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50",
+export const dropdownMenuItemVariants = cva(
+  "relative flex cursor-default select-none items-center gap-x-2.5 rounded-lg px-2 py-1.5 text-sm outline-hidden focus:bg-popover-accent focus:ring-1 focus:ring-menu-item-outline focus:ring-inset data-disabled:pointer-events-none data-disabled:opacity-50",
+
   {
     variants: {
       variant: {
-        default:
-          "focus:bg-popover-accent focus:ring-1 focus:ring-black/5 focus:ring-inset dark:focus:ring-white/5",
+        default: "",
         destructive: "text-destructive focus:bg-popover-accent",
       },
     },

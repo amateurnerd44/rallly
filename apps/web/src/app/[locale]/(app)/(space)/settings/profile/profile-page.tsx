@@ -2,7 +2,6 @@
 
 import { Button } from "@rallly/ui/button";
 import { DialogTrigger } from "@rallly/ui/dialog";
-import { TrashIcon } from "lucide-react";
 
 import {
   PageSection,
@@ -78,8 +77,7 @@ export function ProfilePage() {
             <PageSectionContent>
               <DeleteAccountDialog>
                 <DialogTrigger asChild>
-                  <Button variant="destructive">
-                    <TrashIcon data-icon="inline-start" />
+                  <Button className="text-destructive">
                     <Trans i18nKey="deleteAccount" defaults="Delete Account" />
                   </Button>
                 </DialogTrigger>

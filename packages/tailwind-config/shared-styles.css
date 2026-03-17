@@ -13,6 +13,9 @@
   --primary: var(--primary-light, var(--color-indigo-600));
   --primary-foreground: var(--primary-light-foreground, var(--color-white));
 
+  --button-outline: rgba(0, 0, 0, 0.1);
+  --menu-item-outline: rgba(0, 0, 0, 0.05);
+
   --border: var(--color-gray-200);
   --border-muted: oklch(0.871 0.006 286.286 / 0.5);
 
@@ -61,6 +64,9 @@
   --background: var(--color-gray-900);
   --foreground: var(--color-gray-300);
 
+  --button-outline: rgba(255, 255, 255, 0.1);
+  --menu-item-outline: rgba(255, 255, 255, 0.05);
+
   --primary: var(--primary-dark, var(--color-indigo-500));
   --primary-foreground: var(--primary-dark-foreground, var(--color-white));
 
@@ -82,7 +88,7 @@
   --destructive: var(--color-rose-500);
   --destructive-foreground: var(--color-rose-50);
 
-  --accent: var(--color-gray-700);
+  --accent: oklch(1 0 0 / 0.1);
   --accent-border: var(--color-gray-600);
   --accent-foreground: var(--color-gray-100);
 
@@ -104,6 +110,9 @@
 @theme inline {
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+
+  --color-button-outline: var(--button-outline);
+  --color-menu-item-outline: var(--menu-item-outline);
 
   --color-border: var(--border);
   --color-border-muted: var(--border-muted);

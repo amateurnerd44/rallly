@@ -4,19 +4,22 @@ import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
 import * as React from "react";
 
-const avatarVariants = cva("relative flex shrink-0 overflow-hidden", {
-  variants: {
-    size: {
-      xl: "size-12 rounded-xl text-lg",
-      lg: "size-10 rounded-lg text-base",
-      md: "size-8 rounded-lg text-sm",
-      sm: "size-6 rounded-md text-[10px]",
+const avatarVariants = cva(
+  "relative flex shrink-0 overflow-hidden ring-1 ring-button-outline",
+  {
+    variants: {
+      size: {
+        xl: "size-12 rounded-xl text-lg",
+        lg: "size-10 rounded-lg text-base",
+        md: "size-8 rounded-lg text-sm",
+        sm: "size-6 rounded-md text-[10px]",
+      },
+    },
+    defaultVariants: {
+      size: "md",
     },
   },
-  defaultVariants: {
-    size: "md",
-  },
-});
+);
 
 export type AvatarProps = VariantProps<typeof avatarVariants>;
 
