@@ -1,4 +1,3 @@
-import { Icon } from "@rallly/ui/icon";
 import {
   Sidebar,
   SidebarContent,
@@ -65,9 +64,7 @@ export default async function Layout({
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
                       <Link href="/settings/preferences">
-                        <Icon>
-                          <Settings2Icon />
-                        </Icon>
+                        <Settings2Icon />
                         <Trans i18nKey="preferences" defaults="Preferences" />
                       </Link>
                     </SidebarMenuButton>

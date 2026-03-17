@@ -2,7 +2,6 @@
 
 import { usePostHog } from "@rallly/posthog/client";
 import { useDialog } from "@rallly/ui/dialog";
-import { Icon } from "@rallly/ui/icon";
 import { SidebarMenuButton, SidebarMenuItem } from "@rallly/ui/sidebar";
 import { MegaphoneIcon } from "lucide-react";
 import { FeedbackDialog } from "@/features/feedback/components/feedback-dialog";
@@ -21,9 +20,7 @@ export function FeedbackMenuItem() {
             dialog.trigger();
           }}
         >
-          <Icon>
-            <MegaphoneIcon />
-          </Icon>
+          <MegaphoneIcon />
           <Trans i18nKey="sendFeedback" defaults="Send Feedback" />
         </SidebarMenuButton>
       </SidebarMenuItem>

@@ -23,7 +23,7 @@ export function UpgradeMenuItem() {
           showPayWall();
         }}
       >
-        <SparklesIcon className="size-4" />
+        <SparklesIcon />
         <Trans i18nKey="upgradeToPro" defaults="Upgrade to Pro" />
       </SidebarMenuButton>
     </SidebarMenuItem>
