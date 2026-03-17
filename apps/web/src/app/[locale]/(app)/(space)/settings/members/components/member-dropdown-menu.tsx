@@ -21,7 +21,7 @@ import {
 } from "@rallly/ui/dropdown-menu";
 import { Icon } from "@rallly/ui/icon";
 import { toast } from "@rallly/ui/sonner";
-import { MoreHorizontalIcon, ShieldIcon, UserIcon, XIcon } from "lucide-react";
+import { MoreVerticalIcon, ShieldIcon, UserIcon, XIcon } from "lucide-react";
 import { useSpace } from "@/features/space/client";
 import type { MemberDTO } from "@/features/space/member/types";
 import type { MemberRole } from "@/features/space/schema";
@@ -69,7 +69,7 @@ export function MemberDropdownMenu({ member }: { member: MemberDTO }) {
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon">
             <Icon>
-              <MoreHorizontalIcon />
+              <MoreVerticalIcon />
             </Icon>
           </Button>
         </DropdownMenuTrigger>

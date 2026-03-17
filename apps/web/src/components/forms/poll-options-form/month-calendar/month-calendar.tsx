@@ -13,7 +13,7 @@ import {
   CalendarXIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  MoreHorizontalIcon,
+  MoreVerticalIcon,
   PlusIcon,
   SparklesIcon,
   XIcon,
@@ -380,7 +380,7 @@ const MonthCalendar: React.FunctionComponent<DateTimePickerProps> = ({
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild={true}>
                               <Button variant="ghost" size="icon">
-                                <MoreHorizontalIcon />
+                                <MoreVerticalIcon />
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="start">

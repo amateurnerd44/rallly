@@ -19,7 +19,7 @@ import {
 } from "@rallly/ui/dropdown-menu";
 import { Icon } from "@rallly/ui/icon";
 import { toast } from "@rallly/ui/sonner";
-import { BanIcon, MoreHorizontalIcon } from "lucide-react";
+import { BanIcon, MoreVerticalIcon } from "lucide-react";
 import { Trans, useTranslation } from "@/i18n/client";
 import { trpc } from "@/trpc/client";
 
@@ -41,7 +41,7 @@ export function RevokeApiKeyButton({
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon">
             <Icon>
-              <MoreHorizontalIcon />
+              <MoreVerticalIcon />
             </Icon>
           </Button>
         </DropdownMenuTrigger>

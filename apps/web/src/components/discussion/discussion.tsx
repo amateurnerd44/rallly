@@ -21,7 +21,7 @@ import { toast } from "@rallly/ui/sonner";
 import { Textarea } from "@rallly/ui/textarea";
 import {
   MessageSquareOffIcon,
-  MoreHorizontalIcon,
+  MoreVerticalIcon,
   TrashIcon,
 } from "lucide-react";
 import * as React from "react";
@@ -211,7 +211,7 @@ function DiscussionInner() {
                         {canDelete && (
                           <DropdownMenu>
                             <DropdownMenuTrigger className="text-muted-foreground hover:text-foreground">
-                              <MoreHorizontalIcon className="size-4" />
+                              <MoreVerticalIcon className="size-4" />
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="start">
                               <DropdownMenuItem
