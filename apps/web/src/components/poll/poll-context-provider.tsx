@@ -13,7 +13,7 @@ export const LegacyPollContextProvider = (props: React.PropsWithChildren) => {
   }
 
   return (
-    <PollContextProvider poll={poll} urlId={poll.id}>
+    <PollContextProvider poll={poll}>
       <ModalProvider>
         <OptionsProvider>{props.children}</OptionsProvider>
       </ModalProvider>

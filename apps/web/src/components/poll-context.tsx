@@ -16,7 +16,6 @@ import { useRequiredContext } from "./use-required-context";
 
 type PollContextValue = {
   poll: GetPollApiResponse;
-  urlId: string;
   highScore: number;
   optionIds: string[];
   getScore: (optionId: string) => {
@@ -39,9 +38,8 @@ export const usePoll = () => {
 
 export const PollContextProvider: React.FunctionComponent<{
   poll: GetPollApiResponse;
-  urlId: string;
   children?: React.ReactNode;
-}> = ({ poll, urlId, children }) => {
+}> = ({ poll, children }) => {
   const { t } = useTranslation();
   const { participants } = useParticipants();
 
@@ -83,7 +81,6 @@ export const PollContextProvider: React.FunctionComponent<{
     return {
       optionIds,
       poll,
-      urlId,
       highScore,
       getVote: (participantId, optionId) => {
         const vote = participants
@@ -93,7 +90,7 @@ export const PollContextProvider: React.FunctionComponent<{
       },
       getScore,
     };
-  }, [getScore, participants, poll, urlId]);
+  }, [getScore, participants, poll]);
 
   if (poll.deleted) {
     return (
