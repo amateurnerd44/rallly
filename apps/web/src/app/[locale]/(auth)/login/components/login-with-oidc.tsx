@@ -8,15 +8,17 @@ import { validateRedirectUrl } from "@/utils/redirect";
 export function LoginWithOIDC({
   name,
   redirectTo,
+  providerId = "oidc",
 }: {
   name: string;
   redirectTo?: string;
+  providerId?: string;
 }) {
   return (
     <Button
       onClick={() => {
         authClient.signIn.oauth2({
-          providerId: "oidc",
+          providerId,
           callbackURL: validateRedirectUrl(redirectTo) || "/",
           errorCallbackURL: "/login?error=OAuthSignInFailed",
         });

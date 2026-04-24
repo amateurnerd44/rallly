@@ -27,6 +27,25 @@ export const env = createEnv({
     OIDC_NAME_CLAIM_PATH: z.string().default("name"),
     OIDC_PICTURE_CLAIM_PATH: z.string().default("picture"),
     /**
+     * RepSuite Portal OIDC Federation
+     * Dedicated "Continue with RepSuite" SSO against the portal's OIDC bridge
+     * at https://app.wanakusuite.com. Additive to the generic OIDC provider
+     * above so both can be enabled simultaneously.
+     *
+     * - Secret lives in Vercel: required in production, optional for local dev
+     *   (button is simply not rendered when unset).
+     * - Discovery / client_id are pinned defaults; override for staging clients
+     *   or custom deployments.
+     * - REPSUITE_OIDC_ENABLED lets ops disable the provider without redeploy;
+     *   defaults to enabled whenever the secret is present.
+     */
+    REPSUITE_OIDC_ENABLED: z.enum(["true", "false"]).optional(),
+    REPSUITE_OIDC_CLIENT_ID: z.string().default("rallly"),
+    REPSUITE_OIDC_CLIENT_SECRET: z.string().optional(),
+    REPSUITE_OIDC_DISCOVERY_URL: z
+      .url()
+      .default("https://app.wanakusuite.com/.well-known/openid-configuration"),
+    /**
      * Email Provider
      * Choose which service provider to use for sending emails.
      * Make sure to configure the corresponding environment variables.
@@ -187,6 +206,10 @@ export const env = createEnv({
     OIDC_EMAIL_CLAIM_PATH: process.env.OIDC_EMAIL_CLAIM_PATH,
     OIDC_NAME_CLAIM_PATH: process.env.OIDC_NAME_CLAIM_PATH,
     OIDC_PICTURE_CLAIM_PATH: process.env.OIDC_PICTURE_CLAIM_PATH,
+    REPSUITE_OIDC_ENABLED: process.env.REPSUITE_OIDC_ENABLED,
+    REPSUITE_OIDC_CLIENT_ID: process.env.REPSUITE_OIDC_CLIENT_ID,
+    REPSUITE_OIDC_CLIENT_SECRET: process.env.REPSUITE_OIDC_CLIENT_SECRET,
+    REPSUITE_OIDC_DISCOVERY_URL: process.env.REPSUITE_OIDC_DISCOVERY_URL,
     EMAIL_PROVIDER: process.env.EMAIL_PROVIDER,
     SMTP_HOST: process.env.SMTP_HOST,
     SMTP_USER: process.env.SMTP_USER,
