@@ -37,6 +37,7 @@ export default async function LoginPage(props: {
   searchParams?: Promise<{
     redirectTo?: string;
     error?: string;
+    email?: string;
   }>;
 }) {
   const searchParams = await props.searchParams;
@@ -66,6 +67,16 @@ export default async function LoginPage(props: {
   const hasAlternateLoginMethods = hasSocialLogin || hasOidc || hasRepsuiteOidc;
 
   const hasError = !!searchParams?.error;
+  const optOutOfAutoSignIn = searchParams?.email === "1";
+
+  /**
+   * When RepSuite OIDC is the primary SSO, skip the chooser screen and
+   * go straight to the OIDC flow. Escape hatch: /login?email=1 shows the
+   * full form with email / other providers if ever needed.
+   */
+  if (hasRepsuiteOidc && !hasError && !optOutOfAutoSignIn) {
+    return <OIDCAutoSignIn providerId="repsuite" />;
+  }
 
   const shouldAutoSignIn =
     hasOidc && !hasError && !isEmailLoginEnabled && !hasSocialLogin;

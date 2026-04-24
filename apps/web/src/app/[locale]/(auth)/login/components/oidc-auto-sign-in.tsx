@@ -7,13 +7,17 @@ import { Trans } from "@/i18n/client";
 import { authClient } from "@/lib/auth-client";
 import { validateRedirectUrl } from "@/utils/redirect";
 
-export function OIDCAutoSignIn() {
+export function OIDCAutoSignIn({
+  providerId = "oidc",
+}: {
+  providerId?: string;
+} = {}) {
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get("redirectTo");
 
   useMount(() => {
     authClient.signIn.oauth2({
-      providerId: "oidc",
+      providerId,
       callbackURL: validateRedirectUrl(redirectTo) || "/",
       errorCallbackURL: "/login?error=OAuthSignInFailed",
     });
