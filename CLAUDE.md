@@ -102,6 +102,19 @@ pnpm sherif               # Check package dependencies
 - CASL-based permissions system for spaces and polls
 - User roles: admin, member with tier-based abilities (free/pro)
 
+### SSO
+- **RepSuite portal federation**: the "Continue with RepSuite" login button
+  federates against the portal's OIDC bridge at `app.wanakusuite.com`. The
+  portal issues RS256 id_tokens with `sub = public.users.id` (the canonical
+  repsuite user id). Wired through Better Auth's `genericOAuth` plugin with
+  `providerId: "repsuite"`. Configure via `REPSUITE_OIDC_CLIENT_SECRET` (and
+  optionally `REPSUITE_OIDC_CLIENT_ID`, `REPSUITE_OIDC_DISCOVERY_URL`,
+  `REPSUITE_OIDC_ENABLED`). See `portal/docs/oidc.md` for the full spec,
+  client registration, and admin setup.
+- **Generic OIDC**: the legacy `OIDC_*` env vars still work and run in
+  parallel — self-hosters can plug in any OIDC IdP alongside the RepSuite
+  button.
+
 ### Deployment Modes
 - **Cloud Hosted**: Full SaaS with Stripe billing on Vercel
 - **Self Hosted**: Docker-based deployment without billing features

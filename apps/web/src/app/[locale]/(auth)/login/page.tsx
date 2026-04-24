@@ -48,13 +48,22 @@ export default async function LoginPage(props: {
 
   const hasGoogleProvider = !!authLib.options.socialProviders.google;
   const hasMicrosoftProvider = !!authLib.options.socialProviders.microsoft;
-  const hasOidc = !!authLib.options.plugins.find(
+  const hasGenericOAuthPlugin = !!authLib.options.plugins.find(
     (plugin) => plugin.id === "generic-oauth",
   );
+  const hasOidc =
+    hasGenericOAuthPlugin &&
+    !!env.OIDC_CLIENT_ID &&
+    !!env.OIDC_CLIENT_SECRET &&
+    !!env.OIDC_DISCOVERY_URL;
+  const hasRepsuiteOidc =
+    hasGenericOAuthPlugin &&
+    !!env.REPSUITE_OIDC_CLIENT_SECRET &&
+    env.REPSUITE_OIDC_ENABLED !== "false";
 
   const hasSocialLogin = hasGoogleProvider || hasMicrosoftProvider;
 
-  const hasAlternateLoginMethods = hasSocialLogin || hasOidc;
+  const hasAlternateLoginMethods = hasSocialLogin || hasOidc || hasRepsuiteOidc;
 
   const hasError = !!searchParams?.error;
 
@@ -95,6 +104,13 @@ export default async function LoginPage(props: {
         {isEmailLoginEnabled && <LoginWithEmailForm />}
         {isEmailLoginEnabled && hasAlternateLoginMethods ? <OrDivider /> : null}
         <div className="grid gap-3">
+          {hasRepsuiteOidc ? (
+            <LoginWithOIDC
+              providerId="repsuite"
+              name="RepSuite"
+              redirectTo={searchParams?.redirectTo}
+            />
+          ) : null}
           {hasOidc ? (
             <LoginWithOIDC
               name={env.OIDC_NAME}

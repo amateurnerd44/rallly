@@ -47,40 +47,64 @@ if (env.TURNSTILE_SECRET_KEY) {
   );
 }
 
+const genericOAuthConfigs: Parameters<typeof genericOAuth>[0]["config"] = [];
+
 if (env.OIDC_CLIENT_ID && env.OIDC_CLIENT_SECRET && env.OIDC_DISCOVERY_URL) {
   if (env.OIDC_ISSUER_URL) {
     logger.info(
       "OIDC_ISSUER_URL is no longer used. You can remove it from your environment variables.",
     );
   }
-  plugins.push(
-    genericOAuth({
-      config: [
-        {
-          providerId: "oidc",
-          discoveryUrl: env.OIDC_DISCOVERY_URL,
-          clientId: env.OIDC_CLIENT_ID,
-          clientSecret: env.OIDC_CLIENT_SECRET,
-          scopes: ["openid", "profile", "email"],
-          redirectURI: absoluteUrl("/api/auth/callback/oidc"),
-          pkce: true,
-          mapProfileToUser(profile) {
-            return {
-              name: getValueByPath(profile, env.OIDC_NAME_CLAIM_PATH) as string,
-              email: getValueByPath(
-                profile,
-                env.OIDC_EMAIL_CLAIM_PATH,
-              ) as string,
-              image: getValueByPath(
-                profile,
-                env.OIDC_PICTURE_CLAIM_PATH,
-              ) as string,
-            };
-          },
-        },
-      ],
-    }),
-  );
+  genericOAuthConfigs.push({
+    providerId: "oidc",
+    discoveryUrl: env.OIDC_DISCOVERY_URL,
+    clientId: env.OIDC_CLIENT_ID,
+    clientSecret: env.OIDC_CLIENT_SECRET,
+    scopes: ["openid", "profile", "email"],
+    redirectURI: absoluteUrl("/api/auth/callback/oidc"),
+    pkce: true,
+    mapProfileToUser(profile) {
+      return {
+        name: getValueByPath(profile, env.OIDC_NAME_CLAIM_PATH) as string,
+        email: getValueByPath(profile, env.OIDC_EMAIL_CLAIM_PATH) as string,
+        image: getValueByPath(profile, env.OIDC_PICTURE_CLAIM_PATH) as string,
+      };
+    },
+  });
+}
+
+/**
+ * RepSuite portal OIDC federation — "Continue with RepSuite".
+ * Additive to the generic OIDC provider above; both can run in parallel.
+ * Enabled when the client secret is present, unless explicitly disabled via
+ * REPSUITE_OIDC_ENABLED="false".
+ */
+const isRepsuiteOidcEnabled =
+  env.REPSUITE_OIDC_ENABLED === "false"
+    ? false
+    : !!env.REPSUITE_OIDC_CLIENT_SECRET;
+
+if (isRepsuiteOidcEnabled && env.REPSUITE_OIDC_CLIENT_SECRET) {
+  genericOAuthConfigs.push({
+    providerId: "repsuite",
+    discoveryUrl: env.REPSUITE_OIDC_DISCOVERY_URL,
+    clientId: env.REPSUITE_OIDC_CLIENT_ID,
+    clientSecret: env.REPSUITE_OIDC_CLIENT_SECRET,
+    scopes: ["openid", "email", "profile", "orgs"],
+    redirectURI: absoluteUrl("/api/auth/callback/repsuite"),
+    pkce: true,
+    mapProfileToUser(profile) {
+      return {
+        name: (profile.name ?? profile.email) as string,
+        email: profile.email as string,
+        image: profile.picture as string | undefined,
+      };
+    },
+  });
+}
+
+if (genericOAuthConfigs.length > 0) {
+  plugins.push(genericOAuth({ config: genericOAuthConfigs }));
 }
 
 export const authLib = betterAuth({
