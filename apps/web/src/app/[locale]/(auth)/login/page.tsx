@@ -75,7 +75,7 @@ export default async function LoginPage(props: {
    * full form with email / other providers if ever needed.
    */
   if (hasRepsuiteOidc && !hasError && !optOutOfAutoSignIn) {
-    return <OIDCAutoSignIn providerId="repsuite" />;
+    return <OIDCAutoSignIn providerId="repsuite" destinationName="Rally" />;
   }
 
   const shouldAutoSignIn =

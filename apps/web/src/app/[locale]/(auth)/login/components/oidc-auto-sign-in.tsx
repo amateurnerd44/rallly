@@ -9,8 +9,10 @@ import { validateRedirectUrl } from "@/utils/redirect";
 
 export function OIDCAutoSignIn({
   providerId = "oidc",
+  destinationName,
 }: {
   providerId?: string;
+  destinationName?: string;
 } = {}) {
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get("redirectTo");
@@ -28,10 +30,14 @@ export function OIDCAutoSignIn({
       <div className="flex flex-col items-center gap-2 text-center">
         <Spinner />
         <div className="text-muted-foreground text-sm">
-          <Trans
-            i18nKey="oidcAutoSignInDescription"
-            defaults="You are being redirected to the login page..."
-          />
+          {destinationName ? (
+            `You are being redirected to ${destinationName}…`
+          ) : (
+            <Trans
+              i18nKey="oidcAutoSignInDescription"
+              defaults="You are being redirected to the login page..."
+            />
+          )}
         </div>
       </div>
     </div>
