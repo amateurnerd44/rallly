@@ -93,9 +93,30 @@ pnpm sherif               # Check package dependencies
 - **Feature Flags**: Quick create and other toggles in `apps/web/src/lib/feature-flags/`
 
 ### Database
-- PostgreSQL with Prisma ORM
+- PostgreSQL with Prisma ORM (via the `@prisma/adapter-pg` driver adapter)
 - Multi-model schema split across files in `packages/database/prisma/models/`
 - Supports both cloud (Vercel KV) and self-hosted Redis for rate limiting
+
+#### Production database (Supabase)
+- Production (`rally.wanakusuite.com`, Vercel project `rallly-web`) runs against the
+  **shared suite Supabase project** (`xkzwyatepjhwmavlqzqv`, region `aws-1-us-east-1`),
+  not a dedicated database.
+- To avoid colliding with the portal's tables in that shared project (the portal owns
+  `public.users`/`accounts`/`sessions`), all of Rallly's tables live in a dedicated
+  **`rallly` Postgres schema**.
+- Required env vars in production:
+  - `DATABASE_URL` — transaction pooler, port **6543** (used by the runtime driver adapter)
+  - `DIRECT_DATABASE_URL` — session connection, port **5432**, with `?schema=rallly`
+    (used only by the Prisma CLI / migrations; see `prisma.config.ts`)
+  - `DATABASE_SCHEMA=rallly` — passed to the `pg` adapter's `schema` option in
+    `packages/database/src/client.ts`. **Required at runtime** — if unset, the app
+    queries `public` and would hit the portal's tables. Leave it unset locally so
+    development uses the default `public` schema.
+- To run migrations against Supabase: point `DIRECT_DATABASE_URL` at the 5432 session
+  connection with `?schema=rallly` and run `pnpm db:deploy` (the `rallly` schema is
+  created with `CREATE SCHEMA IF NOT EXISTS rallly` first). Do **not** persist the
+  production Supabase credentials in local `.env` files — a local `db:reset` would
+  otherwise hit production.
 
 ### Authentication & Authorization
 - NextAuth.js with multiple providers (Google, Microsoft, OIDC, Guest)
