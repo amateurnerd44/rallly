@@ -10,7 +10,8 @@
 
 :root {
   --radius: 0.625rem;
-  --primary: var(--primary-light, var(--color-indigo-600));
+  /* Wanaku brand blue is the default; per-space branding still overrides via --primary-light. */
+  --primary: var(--primary-light, #2c6ad4);
   --primary-foreground: var(--primary-light-foreground, var(--color-white));
 
   --button-outline: rgba(0, 0, 0, 0.1);
@@ -67,8 +68,9 @@
   --button-outline: rgba(255, 255, 255, 0.1);
   --menu-item-outline: rgba(255, 255, 255, 0.05);
 
-  --primary: var(--primary-dark, var(--color-indigo-500));
-  --primary-foreground: var(--primary-dark-foreground, var(--color-white));
+  /* Wanaku dark-mode brand blue + navy foreground for AA contrast on the lighter blue. */
+  --primary: var(--primary-dark, #6fa6ff);
+  --primary-foreground: var(--primary-dark-foreground, #06223f);
 
   --sidebar: var(--color-gray-900);
   --sidebar-foreground: var(--color-gray-100);
