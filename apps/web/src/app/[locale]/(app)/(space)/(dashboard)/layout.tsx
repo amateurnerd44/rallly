@@ -12,7 +12,7 @@ import {
   SidebarSeparator,
 } from "@rallly/ui/sidebar";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import { LayoutGridIcon, Settings2Icon } from "lucide-react";
+import { Settings2Icon } from "lucide-react";
 import Link from "next/link";
 import { ControlPanelMenuItem } from "@/app/[locale]/(app)/(space)/(dashboard)/components/control-panel-menu-item";
 import { FeedbackMenuItem } from "@/app/[locale]/(app)/(space)/(dashboard)/components/feedback-menu-item";
@@ -20,10 +20,10 @@ import { SpaceSidebarMenu } from "@/app/[locale]/(app)/(space)/(dashboard)/compo
 import { UpgradeMenuItem } from "@/app/[locale]/(app)/(space)/(dashboard)/components/upgrade-menu-item";
 import { NavUser } from "@/components/nav-user";
 import { UserLocaleSync } from "@/components/user-provider";
-import { env } from "@/env";
 import { LicenseLimitWarning } from "@/features/licensing/components/license-limit-warning";
 import { CommandMenu } from "@/features/navigation/command-menu";
 import { SpaceDropdown } from "@/features/space/components/space-dropdown";
+import { SuiteSwitcher } from "@/features/suite/suite-switcher";
 import { Trans } from "@/i18n/client";
 import { IfFeatureEnabled } from "@/lib/feature-flags/client";
 import { createPrivateSSRHelper } from "@/trpc/server/create-ssr-helper";
@@ -57,14 +57,7 @@ export default async function Layout({
             <SidebarGroup>
               <SidebarGroupContent>
                 <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <a href={env.NEXT_PUBLIC_PORTAL_URL}>
-                        <LayoutGridIcon />
-                        <Trans i18nKey="wanakuSuite" defaults="Wanaku Suite" />
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
+                  <SuiteSwitcher />
                   <UpgradeMenuItem />
                   <IfFeatureEnabled feature="feedback">
                     <FeedbackMenuItem />
