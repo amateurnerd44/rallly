@@ -18,6 +18,7 @@ import { ControlPanelMenuItem } from "@/app/[locale]/(app)/(space)/(dashboard)/c
 import { FeedbackMenuItem } from "@/app/[locale]/(app)/(space)/(dashboard)/components/feedback-menu-item";
 import { SpaceSidebarMenu } from "@/app/[locale]/(app)/(space)/(dashboard)/components/space-sidebar-menu";
 import { UpgradeMenuItem } from "@/app/[locale]/(app)/(space)/(dashboard)/components/upgrade-menu-item";
+import { Logo } from "@/components/logo";
 import { NavUser } from "@/components/nav-user";
 import { UserLocaleSync } from "@/components/user-provider";
 import { LicenseLimitWarning } from "@/features/licensing/components/license-limit-warning";
@@ -48,6 +49,13 @@ export default async function Layout({
         <CommandMenu />
         <Sidebar>
           <SidebarHeader>
+            <Link
+              href="/"
+              aria-label="Rally home"
+              className="flex items-center px-2 pt-1.5 pb-0.5"
+            >
+              <Logo size="sm" />
+            </Link>
             <SpaceDropdown />
           </SidebarHeader>
           <SidebarContent>
