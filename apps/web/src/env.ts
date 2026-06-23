@@ -140,16 +140,16 @@ export const env = createEnv({
     /**
      * App name
      */
-    APP_NAME: z.string().optional().default("Rallly"),
+    APP_NAME: z.string().optional().default("Rally"),
     /**
-     * Primary color for theming (hex format, e.g., "#4f46e5")
+     * Primary color for theming (hex format, e.g., "#2c6ad4")
      */
     PRIMARY_COLOR: z
       .string()
       .regex(/^#[0-9a-fA-F]{6}$/, "Invalid hex color")
       .optional(),
     /**
-     * Primary color for dark mode theming (hex format, e.g., "#6366f1")
+     * Primary color for dark mode theming (hex format, e.g., "#6fa6ff")
      * If not set, will be computed from PRIMARY_COLOR
      */
     PRIMARY_COLOR_DARK: z
